@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Configurazione locale: ognuno tiene la sua (ROI, soglie, giocatori).
+# I default viaggiano nel codice (config_manager.py).
+config.json
+
+# Canzoni personali: non vanno nel repo (copyright + peso).
+songs/*.mp3
+songs/*.wav
+songs/*.ogg
+!songs/LEGGIMI.txt
+
+# Screenshot di debug
+debug/*.png
