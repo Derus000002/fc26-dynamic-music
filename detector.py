@@ -119,13 +119,19 @@ def _ocr_rapidocr(image_bgr, langs=("en",)):
     from rapidocr_onnxruntime import RapidOCR  # type: ignore
     key = "rapidocr"
     if key not in _ocr_instances:
-        # Fondamentale per non laggare il gioco: di default onnxruntime usa
-        # TUTTI i core. Lo cappiamo a 2 thread (parametri ufficiali verificati
-        # su config.yaml: Global.intra/inter_op_num_threads -> Det/Cls/Rec).
-        # use_cls=False: il classificatore di orientamento e' inutile per
-        # scritte HUD orizzontali e fa solo perdere tempo/CPU.
+        # Fondamentale per non laggare il gioco (parametri ufficiali verificati
+        # su config.yaml + benchmark: 456ms -> 17ms a parita' di precisione):
+        # - intra/inter_op_num_threads: di default onnxruntime usa TUTTI i core.
+        # - use_cls=False: il classificatore di orientamento e' inutile per
+        #   scritte HUD orizzontali.
+        # - det_limit_type="max" + det_limit_side_len=1280: col default ("min",
+        #   736) il detector INGRANDIVA ogni piccolo ritaglio fino ad avere
+        #   736px di lato minimo (es. 350x80 -> ~3000x700!) a ogni scansione.
+        #   Con "max" i ritagli piccoli restano nativi (velocissimi) e solo le
+        #   immagini grandi vengono ridotte a max 1280px.
         _ocr_instances[key] = RapidOCR(intra_op_num_threads=2, inter_op_num_threads=1,
-                                       use_cls=False)
+                                       use_cls=False,
+                                       det_limit_side_len=1280, det_limit_type="max")
     engine = _ocr_instances[key]
     result, _ = engine(image_bgr)
     out = []
