@@ -1,0 +1,8 @@
+Metti qui i tuoi MP3 / WAV / OGG, ad esempio:
+  Mbappe.mp3
+  Yamal.mp3
+  Leao.mp3
+  Bellingham.mp3
+
+Poi associa Nome giocatore -> file dalla GUI (Aggiungi/Modifica).
+I percorsi vengono salvati relativi (songs/Nome.mp3) in config.json.

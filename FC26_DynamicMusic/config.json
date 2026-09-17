@@ -1,0 +1,41 @@
+{
+  "players": {
+    "Kylian Mbappe": {
+      "song": "songs/Mbappe.mp3",
+      "start_time": 0,
+      "volume": 0.8
+    },
+    "Lamine Yamal": {
+      "song": "songs/Yamal.mp3",
+      "start_time": 15,
+      "volume": 0.8
+    },
+    "Rafael Leao": {
+      "song": "songs/Leao.mp3",
+      "start_time": 0,
+      "volume": 0.8
+    },
+    "Jude Bellingham": {
+      "song": "songs/Bellingham.mp3",
+      "start_time": 0,
+      "volume": 0.8
+    }
+  },
+  "settings": {
+    "fade_out": 0.5,
+    "fade_in": 0.5,
+    "confidence_threshold": 0.55,
+    "detection_interval": 0.5,
+    "consecutive_hits": 2,
+    "unknown_behavior": "keep",
+    "ocr_backend": "auto",
+    "ocr_language": "en",
+    "monitor_index": 1,
+    "roi": null,
+    "use_indicator_tracking": true,
+    "burst_on_switch_key": true,
+    "switch_keys": ["q", "tab"],
+    "master_volume": 0.8,
+    "debug": false
+  }
+}
